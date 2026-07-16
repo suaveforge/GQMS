@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#0f766e" name="theme-color"/>
+<meta content="G-QMS 공정 품질 데이터 수집·분석·시각화 데모" name="description"/>
+<title>G-QMS | Global Quality Management System</title>
+<link href="./manifest.webmanifest" rel="manifest"/>
+<link href="./assets/icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="./styles.css?v=4.0.0" rel="stylesheet"/>
+</head>
+<body>
+<svg aria-hidden="true" class="svg-sprite">
+<symbol id="i-dashboard" viewbox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z"></path></symbol>
+<symbol id="i-process" viewbox="0 0 24 24"><path d="M3 5h18v4H3V5Zm0 6h18v8H3v-8Zm3 2v4h4v-4H6Zm6 0v4h6v-4h-6Z"></path></symbol>
+<symbol id="i-chart" viewbox="0 0 24 24"><path d="M4 19h16v2H2V3h2v16Zm3-2-2-2 4-4 3 3 5-7 2 1-6.5 9-3.5-3.5L7 17Z"></path></symbol>
+<symbol id="i-tablet" viewbox="0 0 24 24"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 3v13h10V5H7Zm4 14h2v1h-2v-1Z"></path></symbol>
+<symbol id="i-collect" viewbox="0 0 24 24"><path d="M12 2c5 0 9 1.8 9 4s-4 4-9 4-9-1.8-9-4 4-4 9-4Zm-9 8c1.6 1.5 5 2.5 9 2.5s7.4-1 9-2.5v4c0 2.2-4 4-9 4s-9-1.8-9-4v-4Zm0 8c1.6 1.5 5 2.5 9 2.5s7.4-1 9-2.5v1c0 2.2-4 4-9 4s-9-1.8-9-4v-1Z"></path></symbol>
+<symbol id="i-report" viewbox="0 0 24 24"><path d="M6 2h8l4 4v16H6V2Zm8 1.8V7h3.2L14 3.8ZM9 11v2h6v-2H9Zm0 4v2h6v-2H9Z"></path></symbol>
+<symbol id="i-setting" viewbox="0 0 24 24"><path d="m19.4 13 .1-1-.1-1 2-1.5-2-3.4-2.4 1a8 8 0 0 0-1.7-1L15 3.5h-4L10.7 6a8 8 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.5-.1 1 .1 1-2 1.5 2 3.4 2.4-1a8 8 0 0 0 1.7 1l.3 2.6h4l.3-2.6a8 8 0 0 0 1.7-1l2.4 1 2-3.4-2-1.5ZM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"></path></symbol>
+<symbol id="i-search" viewbox="0 0 24 24"><path d="M10.5 3a7.5 7.5 0 1 1-4.7 13.3L2 20.1 3.9 22l3.8-3.8A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"></path></symbol>
+<symbol id="i-menu" viewbox="0 0 24 24"><path d="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z"></path></symbol>
+<symbol id="i-bell" viewbox="0 0 24 24"><path d="M12 22a2.5 2.5 0 0 0 2.4-2h-4.8a2.5 2.5 0 0 0 2.4 2Zm7-5h-1V11a6 6 0 1 0-12 0v6H5v2h14v-2Z"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m9 5 7 7-7 7-1.5-1.5L13 12 7.5 6.5 9 5Z"></path></symbol>
+</svg>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<div class="brand">
+<div class="brand-mark">G</div>
+<div class="brand-copy">
+<strong>G-QMS</strong>
+<span data-i18n="brandSub">Global Quality</span>
+</div>
+</div>
+<nav aria-label="Primary" class="nav">
+<a class="nav-item active" data-route="dashboard" href="#dashboard">
+<svg><use href="#i-dashboard"></use></svg><span data-i18n="navDashboard">통합 대시보드</span>
+</a>
+<a class="nav-item" data-route="process" href="#process">
+<svg><use href="#i-process"></use></svg><span data-i18n="navProcess">공정 현황</span>
+</a>
+<a class="nav-item" data-route="analysis" href="#analysis">
+<svg><use href="#i-chart"></use></svg><span data-i18n="navAnalysis">품질 분석</span>
+</a>
+<a class="nav-item" data-route="input" href="#input">
+<svg><use href="#i-tablet"></use></svg><span data-i18n="navInput">현장 입력</span>
+</a>
+<a class="nav-item" data-route="collection" href="#collection">
+<svg><use href="#i-collect"></use></svg><span data-i18n="navCollection">수집 관리</span>
+</a>
+<a class="nav-item" data-route="reports" href="#reports">
+<svg><use href="#i-report"></use></svg><span data-i18n="navReports">보고서</span>
+</a>
+<a class="nav-item" data-route="settings" href="#settings">
+<svg><use href="#i-setting"></use></svg><span data-i18n="navSettings">기준 정보</span>
+</a>
+</nav>
+<div class="sidebar-foot">
+<div class="system-mini">
+<span class="status-dot ok"></span>
+<div>
+<strong data-i18n="systemNormal">시스템 정상</strong>
+<span id="sidebarSync">12:42:18</span>
+</div>
+</div>
+</div>
+</aside>
+<div class="main-shell">
+<header class="topbar">
+<button aria-label="메뉴 열기" class="icon-button mobile-menu" id="menuButton"><svg><use href="#i-menu"></use></svg></button>
+<div class="page-heading">
+<h1 id="pageTitle">통합 대시보드</h1>
+<p data-i18n="dashboardSubtitle" id="pageSubtitle">천안·베트남 공정 품질 현황</p>
+</div>
+<div class="topbar-actions">
+<div aria-label="Site" class="site-switch" role="group">
+<button class="site-btn active" data-i18n="siteAll" data-site="all">통합</button>
+<button class="site-btn" data-i18n="siteCheonan" data-site="cheonan">천안</button>
+<button class="site-btn" data-i18n="siteVietnam" data-site="vietnam">베트남</button>
+</div>
+<div class="notification-wrap">
+<button aria-expanded="false" aria-label="알림" class="icon-button notification" id="notificationButton"><svg><use href="#i-bell"></use></svg><span id="notificationCount">3</span></button>
+<div class="notification-panel" hidden="" id="notificationPanel">
+<div class="notification-head"><strong data-i18n="notifications">알림</strong><button data-i18n="markRead" id="markAllRead" type="button">모두 읽음</button></div>
+<button class="notification-item" data-notice-route="analysis" type="button"><b>ASMT-07</b><span data-i18n="overTarget">목표 초과</span><small>3.42%</small></button>
+<button class="notification-item" data-notice-route="process" type="button"><b>POST-09</b><span data-i18n="delay">지연</span><small>20 sec</small></button>
+<button class="notification-item" data-notice-route="collection" type="button"><b>PLC-VN-12</b><span data-i18n="inspection">점검</span><small>4 min</small></button>
+</div>
+</div>
+<select aria-label="Language" class="language-select" id="languageSelect">
+<option value="ko">한국어</option>
+<option value="en">English</option>
+<option value="vi">Tiếng Việt</option>
+</select>
+</div>
+</header>
+<main class="content">
+<section class="page active" data-page="dashboard" id="page-dashboard">
+<div class="status-strip">
+<div class="status-main">
+<span class="status-dot ok"></span>
+<strong data-i18n="liveOperation" id="liveOperationText">전체 공정 정상 운영</strong>
+<span class="muted" data-i18n="liveSummary" id="liveSummaryText">138개 공정 중 134개 정상 · 3개 지연 · 1개 점검</span>
+</div>
+<div class="live-clock"><span data-i18n="lastUpdate">최근 갱신</span> <strong id="liveClock">12:42:18</strong></div>
+</div>
+<div class="kpi-grid">
+<article class="kpi-card">
+<div class="kpi-head"><span data-i18n="kpiProduction">금일 생산량</span><span class="trend up">+4.8%</span></div>
+<strong class="kpi-value" id="kpiProductionValue">128,420</strong>
+<span class="kpi-unit" data-i18n="unitCount">개</span>
+<div aria-hidden="true" class="sparkline"><i style="height:35%"></i><i style="height:50%"></i><i style="height:43%"></i><i style="height:64%"></i><i style="height:58%"></i><i style="height:76%"></i><i style="height:82%"></i></div>
+</article>
+<article class="kpi-card">
+<div class="kpi-head"><span data-i18n="kpiDefect">불량률</span><span class="trend down">-0.12%p</span></div>
+<strong class="kpi-value" id="kpiDefectValue">1.84%</strong>
+<div class="goal-row"><span data-i18n="goal">목표</span><strong>2.00%</strong><span class="badge success" data-i18n="withinGoal">목표 이내</span></div>
+</article>
+<article class="kpi-card">
+<div class="kpi-head"><span data-i18n="kpiScrap">폐기율</span><span class="trend down">-0.04%p</span></div>
+<strong class="kpi-value" id="kpiScrapValue">0.31%</strong>
+<div class="goal-row"><span data-i18n="goal">목표</span><strong>0.40%</strong><span class="badge success" data-i18n="withinGoal">목표 이내</span></div>
+</article>
+<article class="kpi-card">
+<div class="kpi-head"><span data-i18n="kpiRepair">수리 완료율</span><span class="trend up">+2.1%p</span></div>
+<strong class="kpi-value" id="kpiRepairValue">96.7%</strong>
+<div class="progress"><span id="kpiRepairProgress" style="width:96.7%"></span></div>
+<div class="goal-row"><span data-i18n="openItems">미처리</span><strong id="kpiOpenValue">18</strong><span data-i18n="unitCount">개</span></div>
+</article>
+</div>
+<div class="dashboard-grid">
+<article class="panel panel-wide">
+<div class="panel-head">
+<div><h2 data-i18n="qualityTrend">시간대별 품질 추이</h2><p data-i18n="qualityTrendSub">불량률 · 목표 2.00%</p></div>
+<div class="segmented"><button class="active" data-i18n="today" data-range="today">오늘</button><button data-i18n="week" data-range="week">7일</button><button data-i18n="month" data-range="month">30일</button></div>
+</div>
+<div class="chart-wrap"><svg aria-label="품질 추이 차트" class="chart" id="trendChart" role="img"></svg></div>
+</article>
+<article class="panel">
+<div class="panel-head">
+<div><h2 data-i18n="siteComparison">사업장 비교</h2><p data-i18n="defectRate">불량률</p></div>
+</div>
+<div class="site-compare">
+<div class="donut" style="--value:1.72"><span>1.72%</span><small data-i18n="siteCheonan">천안</small></div>
+<div class="donut warning" style="--value:2.03"><span>2.03%</span><small data-i18n="siteVietnam">베트남</small></div>
+</div>
+<div class="compare-row"><span data-i18n="targetGap">목표 대비</span><strong class="good">-0.16%p</strong></div>
+</article>
+<article class="panel panel-wide">
+<div class="panel-head">
+<div><h2 data-i18n="lineStatus">라인 상태</h2><p data-i18n="lineStatusSub">48개 라인 실시간 상태</p></div>
+<button class="text-button" data-goto="process"><span data-i18n="viewAll">전체 보기</span><svg><use href="#i-chevron"></use></svg></button>
+</div>
+<div class="line-grid" id="lineGrid"></div>
+</article>
+<article class="panel">
+<div class="panel-head">
+<div><h2 data-i18n="topDefects">주요 불량 TOP 5</h2><p data-i18n="today">오늘</p></div>
+</div>
+<div class="rank-list">
+<div><span class="rank">1</span><span data-i18n="defectSolder">납땜 불량</span><b>428</b><i style="width:100%"></i></div>
+<div><span class="rank">2</span><span data-i18n="defectAppearance">외관 흠집</span><b>301</b><i style="width:70%"></i></div>
+<div><span class="rank">3</span><span data-i18n="defectPart">부품 누락</span><b>214</b><i style="width:50%"></i></div>
+<div><span class="rank">4</span><span data-i18n="defectVision">비전 오검</span><b>176</b><i style="width:41%"></i></div>
+<div><span class="rank">5</span><span data-i18n="defectPolarity">극성 오류</span><b>121</b><i style="width:28%"></i></div>
+</div>
+</article>
+</div>
+</section>
+<section class="page" data-page="process" id="page-process">
+<div class="filter-bar">
+<label><span data-i18n="site">사업장</span><select id="processSiteFilter"><option data-i18n="siteAll" value="all">통합</option><option data-i18n="siteCheonan" value="cheonan">천안</option><option data-i18n="siteVietnam" value="vietnam">베트남</option></select></label>
+<label><span data-i18n="processType">공정 구분</span><select id="processTypeFilter"><option data-i18n="all" value="all">전체</option><option value="SMT">SMT</option><option data-i18n="postProcess" value="POST">후공정</option><option value="ASMT">ASMT</option><option value="OTHER">Other</option></select></label>
+<label><span data-i18n="status">상태</span><select id="processStatusFilter"><option data-i18n="all" value="all">전체</option><option data-i18n="normal" value="normal">정상</option><option data-i18n="delay" value="delay">지연</option><option data-i18n="inspection" value="inspection">점검</option></select></label>
+<div class="search-box"><svg><use href="#i-search"></use></svg><input data-i18n-placeholder="searchLine" id="processSearch" placeholder="라인·공정 검색" type="search"/></div>
+</div>
+<div class="summary-cards compact">
+<article><span data-i18n="totalLines">전체 라인</span><strong id="summaryTotal">48</strong></article>
+<article><span data-i18n="normal">정상</span><strong class="good" id="summaryNormal">44</strong></article>
+<article><span data-i18n="delay">지연</span><strong class="warn" id="summaryDelay">3</strong></article>
+<article><span data-i18n="inspection">점검</span><strong class="bad" id="summaryInspection">1</strong></article>
+</div>
+<article class="panel">
+<div class="panel-head">
+<div><h2 data-i18n="processList">공정 목록</h2><p data-i18n="processListSub">최근 수집 시각과 품질 상태를 함께 확인합니다.</p></div>
+<button class="primary-button" data-i18n="refresh" id="processRefresh">새로고침</button>
+</div>
+<div class="table-wrap">
+<table class="responsive-table">
+<thead><tr><th data-i18n="site">사업장</th><th data-i18n="line">라인</th><th data-i18n="process">공정</th><th data-i18n="collectionType">수집 방식</th><th data-i18n="production">생산량</th><th>PASS</th><th>FAIL</th><th data-i18n="defectRate">불량률</th><th data-i18n="lastReceive">최근 수신</th><th data-i18n="status">상태</th></tr></thead>
+<tbody id="processTable"></tbody>
+</table>
+</div>
+</article>
+</section>
+<section class="page" data-page="analysis" id="page-analysis">
+<div class="filter-bar">
+<label><span data-i18n="period">기간</span><select id="analysisPeriod"><option data-i18n="today" value="today">오늘</option><option data-i18n="week" value="week">7일</option><option data-i18n="month" value="month">30일</option></select></label>
+<label><span data-i18n="site">사업장</span><select id="analysisSite"><option data-i18n="siteAll" value="all">통합</option><option data-i18n="siteCheonan" value="cheonan">천안</option><option data-i18n="siteVietnam" value="vietnam">베트남</option></select></label>
+<label><span data-i18n="line">라인</span><select id="analysisLine"><option data-i18n="all" value="all">전체</option><option value="SMT-01">SMT-01</option><option value="SMT-02">SMT-02</option><option value="ASMT-03">ASMT-03</option></select></label>
+<label><span data-i18n="model">모델</span><select id="analysisModel"><option data-i18n="all" value="all">전체</option><option value="NX-A14">NX-A14</option><option value="NX-B22">NX-B22</option><option value="NX-C07">NX-C07</option></select></label>
+<button class="primary-button" data-i18n="apply" id="analysisApply">적용</button>
+</div>
+<div class="dashboard-grid">
+<article class="panel panel-wide">
+<div class="panel-head"><div><h2 data-i18n="defectTrend">불량률 추이</h2><p data-i18n="compareTarget">목표 대비 실적</p></div></div>
+<div class="chart-wrap"><svg class="chart" id="analysisTrendChart" role="img"></svg></div>
+</article>
+<article class="panel">
+<div class="panel-head"><div><h2 data-i18n="qualitySummary">품질 요약</h2><p data-i18n="selectedPeriod">선택 기간</p></div></div>
+<div class="metric-list">
+<div><span data-i18n="avgDefect">평균 불량률</span><strong id="analysisAvg">1.84%</strong></div>
+<div><span data-i18n="bestLine">최우수 라인</span><strong id="analysisBest">SMT-03</strong></div>
+<div><span data-i18n="attentionLine">주의 라인</span><strong class="warn" id="analysisAttention">ASMT-07</strong></div>
+<div><span data-i18n="improvement">전주 대비</span><strong class="good" id="analysisImprovement">-0.21%p</strong></div>
+</div>
+</article>
+<article class="panel panel-wide">
+<div class="panel-head"><div><h2 data-i18n="pareto">불량 유형 파레토</h2><p data-i18n="cumulative">누적 비중</p></div></div>
+<div class="chart-wrap"><svg class="chart" id="paretoChart" role="img"></svg></div>
+</article>
+<article class="panel">
+<div class="panel-head"><div><h2 data-i18n="anomaly">이상 공정</h2><p data-i18n="autoDetect">자동 감지</p></div></div>
+<div class="alert-list">
+<div class="alert-item danger"><span>ASMT-07</span><strong>3.42%</strong><small data-i18n="overTarget">목표 초과</small></div>
+<div class="alert-item warning"><span>SMT-05</span><strong>2.31%</strong><small data-i18n="rising">상승 추세</small></div>
+<div class="alert-item warning"><span>POST-09</span><strong>2.18%</strong><small data-i18n="repeatDefect">동일 불량 반복</small></div>
+</div>
+</article>
+</div>
+</section>
+<section class="page" data-page="input" id="page-input">
+<div class="tablet-layout">
+<aside class="tablet-menu panel">
+<div class="panel-head"><div><h2 data-i18n="selectInput">입력 업무 선택</h2><p data-i18n="touchOptimized">태블릿 터치 최적화</p></div></div>
+<button class="input-type active" data-form="appearance"><span>01</span><div><strong data-i18n="appearanceInspection">외관검사</strong><small>PASS / FAIL · Photo</small></div></button>
+<button class="input-type" data-form="repair"><span>02</span><div><strong data-i18n="repairRoom">수리실</strong><small>Repair · History</small></div></button>
+<button class="input-type" data-form="pqc"><span>03</span><div><strong>PQC</strong><small>Process Quality</small></div></button>
+<button class="input-type" data-form="solder"><span>04</span><div><strong>Selective Solder</strong><small>Start / End</small></div></button>
+</aside>
+<article class="tablet-form panel">
+<div class="tablet-form-head">
+<div><span class="eyebrow" data-i18n="currentWork">현재 작업</span><h2 data-i18n="appearanceInspection" id="formTitle">외관검사</h2></div>
+<div class="sync-badge"><span class="status-dot ok"></span><span data-i18n="online">온라인</span></div>
+</div>
+<div class="form-grid">
+<label><span data-i18n="site">사업장</span><select id="fieldSite"><option data-i18n="siteCheonan" value="cheonan">천안</option><option data-i18n="siteVietnam" value="vietnam">베트남</option></select></label>
+<label><span data-i18n="line">라인</span><select id="fieldLine"><option value="SMT-01">SMT-01</option><option value="SMT-02">SMT-02</option><option value="ASMT-03">ASMT-03</option></select></label>
+<label><span data-i18n="model">모델</span><select id="fieldModel"><option value="NX-A14">NX-A14</option><option value="NX-B22">NX-B22</option></select></label>
+<label><span data-i18n="lot">LOT</span><input id="fieldLot" value="LOT-260716-018"/></label>
+</div>
+<div class="decision-block">
+<span class="field-label" data-i18n="judgement">판정</span>
+<div class="decision-buttons">
+<button class="decision pass active" data-decision="pass">PASS</button>
+<button class="decision fail" data-decision="fail">FAIL</button>
+</div>
+</div>
+<div class="form-grid two">
+<label><span data-i18n="defectName">불량명</span><select id="fieldDefect"><option data-i18n="none">없음</option><option data-i18n="defectSolder">납땜 불량</option><option data-i18n="defectAppearance">외관 흠집</option><option data-i18n="defectPart">부품 누락</option></select></label>
+<label><span data-i18n="quantity">수량</span><input id="fieldQuantity" min="0" type="number" value="0"/></label>
+</div>
+<div class="photo-area" id="photoArea">
+<label class="photo-upload" id="photoUploadLabel">
+<input accept="image/*" capture="environment" id="photoInput" type="file"/>
+<span class="photo-icon">＋</span>
+<strong data-i18n="attachPhoto">사진 첨부</strong>
+<small data-i18n="photoHint">촬영 또는 파일 선택</small>
+</label>
+<div class="photo-preview" hidden="" id="photoPreview">
+<img alt="Inspection photo preview" id="photoPreviewImage"/>
+<div><strong id="photoName"></strong><small id="photoInfo"></small></div>
+<button class="photo-remove" data-i18n="removePhoto" id="photoRemove" type="button">사진 삭제</button>
+</div>
+</div>
+<div class="form-actions">
+<button class="secondary-button" data-i18n="saveDraft" id="saveDraft">임시 저장</button>
+<button class="primary-button large" data-i18n="completeInput" id="submitInput">입력 완료</button>
+</div>
+<div class="offline-queue"><span data-i18n="offlineQueue">오프라인 대기</span><strong id="queueCount">0</strong><span data-i18n="unitCount">개</span></div>
+</article>
+</div>
+</section>
+<section class="page" data-page="collection" id="page-collection">
+<div class="collection-cards">
+<article class="source-card">
+<div class="source-icon csv">CSV</div>
+<div><span data-i18n="mesCsv">MES CSV 연동</span><strong>104 / 104</strong><small data-i18n="normalCollection">정상 수집</small></div>
+<span class="badge success" data-i18n="normal">정상</span>
+</article>
+<article class="source-card">
+<div class="source-icon direct">PLC</div>
+<div><span data-i18n="directCollection">설비 직접 수집</span><strong>11 / 12</strong><small data-i18n="oneInspect">1개 점검</small></div>
+<span class="badge warning" data-i18n="inspection">점검</span>
+</article>
+<article class="source-card">
+<div class="source-icon touch">TAB</div>
+<div><span data-i18n="touchInput">터치 입력</span><strong>22 / 22</strong><small data-i18n="normalInput">정상 입력</small></div>
+<span class="badge success" data-i18n="normal">정상</span>
+</article>
+</div>
+<article class="panel">
+<div class="panel-head">
+<div><h2 data-i18n="collectionMonitor">수집 모니터</h2><p data-i18n="collectionMonitorSub">지연·오류 발생 시 즉시 확인합니다.</p></div>
+<div class="live-indicator"><span></span>LIVE</div>
+</div>
+<div class="table-wrap">
+<table class="responsive-table">
+<thead><tr><th data-i18n="source">수집원</th><th data-i18n="site">사업장</th><th data-i18n="line">라인</th><th data-i18n="process">공정</th><th data-i18n="collectionType">수집 방식</th><th data-i18n="lastReceive">최근 수신</th><th data-i18n="delayTime">지연</th><th data-i18n="status">상태</th><th></th></tr></thead>
+<tbody id="collectionTable"></tbody>
+</table>
+</div>
+</article>
+</section>
+<section class="page" data-page="reports" id="page-reports">
+<div class="report-grid">
+<article class="report-card"><span class="report-type">D</span><div><strong data-i18n="dailyReport">일간 품질 보고서</strong><small data-i18n="dailyReportSub">생산·불량·이상 공정 요약</small></div><button class="secondary-button" data-i18n="download" data-report="daily">다운로드</button></article>
+<article class="report-card"><span class="report-type">W</span><div><strong data-i18n="weeklyReport">주간 품질 보고서</strong><small data-i18n="weeklyReportSub">사업장·라인별 추이 비교</small></div><button class="secondary-button" data-i18n="download" data-report="weekly">다운로드</button></article>
+<article class="report-card"><span class="report-type">M</span><div><strong data-i18n="monthlyReport">월간 품질 보고서</strong><small data-i18n="monthlyReportSub">KPI·파레토·개선 실적</small></div><button class="secondary-button" data-i18n="download" data-report="monthly">다운로드</button></article>
+</div>
+<article class="panel report-preview">
+<div class="panel-head">
+<div><h2 data-i18n="reportPreview">보고서 미리보기</h2><p>2026.07.16</p></div>
+<button class="primary-button" data-i18n="print" id="printReport">인쇄</button>
+</div>
+<div class="preview-sheet">
+<div class="preview-title"><div><strong>G-QMS</strong><span data-i18n="dailyQualityReport">일간 품질 현황</span></div><b>2026.07.16</b></div>
+<div class="preview-kpis"><div><span data-i18n="production">생산량</span><strong>128,420</strong></div><div><span data-i18n="defectRate">불량률</span><strong>1.84%</strong></div><div><span data-i18n="kpiScrap">폐기율</span><strong>0.31%</strong></div><div><span data-i18n="anomaly">이상 공정</span><strong>3</strong></div></div>
+<div class="preview-bars"><i style="height:35%"></i><i style="height:52%"></i><i style="height:48%"></i><i style="height:66%"></i><i style="height:61%"></i><i style="height:72%"></i><i style="height:58%"></i><i style="height:81%"></i><i style="height:69%"></i><i style="height:76%"></i><i style="height:88%"></i><i style="height:82%"></i></div>
+</div>
+</article>
+</section>
+<section class="page" data-page="settings" id="page-settings">
+<div class="settings-grid">
+<article class="panel settings-menu">
+<button class="active" data-i18n="masterData" data-settings="master">기준 정보</button>
+<button data-i18n="defectCodes" data-settings="defects">불량 코드</button>
+<button data-i18n="targetSettings" data-settings="targets">목표 설정</button>
+<button data-i18n="usersPermissions" data-settings="users">사용자·권한</button>
+</article>
+<article class="panel settings-content" id="settingsContent">
+<div class="panel-head"><div><h2 data-i18n="masterData">기준 정보</h2><p data-i18n="masterDataSub">사업장·라인·공정·설비 구조를 관리합니다.</p></div><button class="primary-button" data-i18n="add" id="settingsAdd">추가</button></div>
+<div class="master-tree">
+<details open=""><summary><strong data-i18n="siteCheonan">천안</strong><span>26 Lines</span></summary>
+<div class="tree-row"><span>SMT</span><b>7</b></div><div class="tree-row"><span data-i18n="postProcessElectrical">후공정(전장)</span><b>9</b></div><div class="tree-row"><span data-i18n="postProcessNonElectrical">후공정(비전장)</span><b>10</b></div>
+</details>
+<details open=""><summary><strong data-i18n="siteVietnam">베트남</strong><span>22 Lines</span></summary>
+<div class="tree-row"><span>SMT</span><b>11</b></div><div class="tree-row"><span>ASMT</span><b>9</b></div><div class="tree-row"><span data-i18n="appearanceInspection">외관검사</span><b>1</b></div><div class="tree-row"><span data-i18n="repairRoom">수리실</span><b>1</b></div>
+</details>
+</div>
+</article>
+</div>
+</section>
+</main>
+</div>
+</div>
+<div class="modal-backdrop" hidden="" id="modalBackdrop">
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal" role="dialog">
+<div class="modal-head"><h2 id="modalTitle"></h2><button aria-label="Close" class="modal-close" id="modalClose" type="button">×</button></div>
+<div class="modal-body" id="modalBody"></div>
+<div class="modal-actions" id="modalActions"></div>
+</div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<script src="./app.js?v=4.0.0"></script>
+</body>
+</html>
