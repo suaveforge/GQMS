@@ -1,0 +1,24 @@
+name: SiteHub SearchOps complete p08 once
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sitehub-searchops-complete-once.yml']
+permissions: {contents: write}
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply complete SiteHub contract
+        env:
+          PROJECT_ID: p08
+          PUBLIC_URL: https://gqms.suaveforge.com/
+          PROJECT_NAME: G-QMS
+          DESCRIPTION: G-QMS는 공정 품질 데이터를 수집·분석·시각화하고 사업장별 품질 현황과 보고서를 확인하는 품질관리 시스템입니다.
+        run: |
+          set -Eeuo pipefail
+          curl -fsSL https://raw.githubusercontent.com/suaveforge/sitehub-deploy/8289fa3e45143954bda73514ad6fd3667d90891d/searchops/static-complete-adapter.py -o /tmp/sitehub.py
+          python /tmp/sitehub.py
+          git config user.name 'SuaveForge SiteHub'; git config user.email '53187583+programmer119@users.noreply.github.com'
+          git add index.html sitemap.xml robots.txt
+          if ! git diff --cached --quiet; then git commit -m 'Apply SiteHub SearchOps p08'; git push; fi
